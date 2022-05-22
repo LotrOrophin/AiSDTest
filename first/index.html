@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ГЛАВНАЯ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://ulstu.ru/local/templates/Ulstu/images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="index.css">
+    <script>
+        function isLogin() {
+            const writtenLogin = document.getElementById("login").value
+            const writtenPassword = document.getElementById("password").value
+            if (writtenLogin === '' || writtenPassword == '') {
+                alert('ЧЕТО НЕ ОК МУЖИК)))')
+            } else {
+                alert('ВСЕ ОК =)')
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <a href="listpage.html" target="_blank">Страница со списком</a>
+        <a href="index.html" target="_blank">Главная</a>
+        <a href="https://vk.com/ulstu73" target="_blank">ВК?</a>
+    </header>
+    <main> 
+        <div class="leftContextMenu">
+            <div class="loginPanel">
+                <p>
+                    <b>Логин:</b>
+                    <input id="login" type="text">
+                </p>
+                <p>
+                    <b>Пароль:</b>
+                    <input id="password" type="password">
+                </p>
+                <button onclick="isLogin()">
+                    Войти
+                </button>
+            </div>
+        </div>
+        <div class="mainContainer">
+            <h1>КАФЕДРА ИС</h1>
+            <hr />
+            <div class="contentContainer">
+                <p>Кафедра основана в 1997 году на факультете Информационных систем и технологий</p>
+                <p>Адрес кафедры: 432027, г. Ульяновск, ул. Северный Венец, 32, 3 учебный корпус, ауд.422</p>
+                <p>Телефон кафедры: (8422) 77-80-79</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <strong>Это делал не Денис Охотников © 2022</strong>
+    </footer>
+</body>
+</html>
