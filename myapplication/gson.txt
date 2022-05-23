@@ -1,0 +1,54 @@
+@RequiresApi(api = Build.VERSION_CODES.O)
+public void importFromJson(View view) throws IOException {
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            requestPermissions(permissions,228);
+
+            String fullName = "/storage/emulated/0/Download/mdp.json";
+            Path path = Paths.get(fullName);
+            String jsonString = null;
+            try {
+                jsonString = new String(Files.readAllBytes(path)).toLowerCase();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Gson gson = new Gson();
+            final Element[] arr = gson.fromJson(jsonString, Element[].class);
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    adapter.clear();
+                    adapter.addAll(Arrays.asList(arr));
+                    adapter.notifyDataSetChanged();
+                }
+            });
+        }
+    }).start();
+}
+
+@RequiresApi(api = Build.VERSION_CODES.O)
+private void saveToJson() throws IOException {
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            requestPermissions(permissions,228);
+
+            String fullName = getApplicationInfo().dataDir + "/" + "storage.json";
+            Path path = Paths.get(fullName);
+
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(elements);
+
+            try {
+                Files.write(path, jsonString.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }).start();
+}
